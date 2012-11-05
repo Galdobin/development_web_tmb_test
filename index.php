@@ -9,7 +9,7 @@
 			// актуальный комментарий для первой master
 			// Новый комментарий
 			// Добавление в новому комментарию
-			include 'function.php';
+			include 'function.php'; 
 		?>
     </body>
 </html>
