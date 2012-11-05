@@ -6,7 +6,7 @@
     </head>
     <body>
 		<?php
-			// put your code here
+			// актуальный комментарий для первой ветки
 		?>
     </body>
 </html>
