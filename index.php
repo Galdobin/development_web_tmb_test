@@ -17,7 +17,7 @@
 				}
 			}
 		?>
-		<form action="<?=$_SERVER['SCRIPT_NAME']?>" method = post>
+		<form action="<?= $_SERVER['SCRIPT_NAME'] ?>" method = post>
 			Какие языки программирования Вы знаете?<br />
 			<input type="hidden" name="known[PHP]" value="0" />
 			<input type="checkbox" name="known[PHP]" value="1" />PHP<br />
@@ -28,5 +28,12 @@
 		<pre>
 			<?php print_r($GLOBALS); ?>
 		</pre>
+		<?php
+			// Вывод всех переменных окружения
+			foreach ($_SERVER as $k => $v)
+			{
+				echo "<b>$k</b> => <tt>$v</tt><br />\n";
+			}
+		?>
     </body>
 </html>
