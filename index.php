@@ -5,11 +5,8 @@
         <title></title>
     </head>
     <body>
-		<?php
-			// актуальный комментарий для первой master
-			// Новый комментарий
-			// Добавление в новому комментарию
-			include 'function.php'; 
-		?>
+		<pre>
+			<?php print_r($GLOBALS);?>
+		</pre>
     </body>
 </html>
