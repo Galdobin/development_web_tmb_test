@@ -34,6 +34,8 @@
 			{
 				echo "<b>$k</b> => <tt>$v</tt><br />\n";
 			}
+			require_once 'first.php';
+			echo $create;
 		?>
     </body>
 </html>
