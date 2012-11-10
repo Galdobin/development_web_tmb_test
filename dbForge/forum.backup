@@ -9,7 +9,7 @@
   <OutputDirectory>C:\xampp\htdocs\Test\dbForge</OutputDirectory>
   <BaseFileName>forum</BaseFileName>
   <Mode>All</Mode>
-  <AppendTimestamp>True</AppendTimestamp>
+  <AppendTimestamp>False</AppendTimestamp>
   <MaxDays>0</MaxDays>
   <MaxFilesCount>0</MaxFilesCount>
   <Compression />

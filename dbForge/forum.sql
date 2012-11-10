@@ -1,6 +1,6 @@
 ﻿-- Скрипт сгенерирован Devart dbForge Studio for MySQL, Версия 5.0.97.1
 -- Домашняя страница продукта: http://www.devart.com/ru/dbforge/mysql/studio
--- Дата скрипта: 10.11.2012 19:01:23
+-- Дата скрипта: 10.11.2012 20:22:23
 -- Версия сервера: 5.5.27
 -- Версия клиента: 4.1
 
@@ -166,6 +166,17 @@ BEGIN
 		ceiling(count(topic.id) / rop) AS cnt
 		FROM
 			topic;
+END
+$$
+
+--
+-- Описание для процедуры procedure1
+--
+DROP PROCEDURE IF EXISTS procedure1$$
+CREATE DEFINER = 'root'@'localhost'
+PROCEDURE procedure1()
+BEGIN
+
 END
 $$
 
