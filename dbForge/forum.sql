@@ -1,6 +1,6 @@
 ﻿-- Скрипт сгенерирован Devart dbForge Studio for MySQL, Версия 5.0.97.1
 -- Домашняя страница продукта: http://www.devart.com/ru/dbforge/mysql/studio
--- Дата скрипта: 10.11.2012 20:35:08
+-- Дата скрипта: 15.11.2012 18:59:25
 -- Версия сервера: 5.5.27
 -- Версия клиента: 4.1
 
@@ -31,9 +31,9 @@ CREATE TABLE comments (
   `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата добавления',
   PRIMARY KEY (id)
 )
-ENGINE = MYISAM
+ENGINE = INNODB
 AUTO_INCREMENT = 51
-AVG_ROW_LENGTH = 76
+AVG_ROW_LENGTH = 327
 CHARACTER SET utf8
 COLLATE utf8_general_ci
 COMMENT = 'Комментарии';
@@ -47,9 +47,9 @@ CREATE TABLE rb_rights (
   name TEXT CHARACTER SET ujis COLLATE ujis_japanese_ci NOT NULL,
   PRIMARY KEY (id)
 )
-ENGINE = MYISAM
+ENGINE = INNODB
 AUTO_INCREMENT = 3
-AVG_ROW_LENGTH = 36
+AVG_ROW_LENGTH = 8192
 CHARACTER SET utf8
 COLLATE utf8_general_ci
 COMMENT = 'Права пользователя';
@@ -63,9 +63,9 @@ CREATE TABLE rb_status (
   name TEXT CHARACTER SET ujis COLLATE ujis_japanese_ci NOT NULL,
   PRIMARY KEY (id)
 )
-ENGINE = MYISAM
+ENGINE = INNODB
 AUTO_INCREMENT = 4
-AVG_ROW_LENGTH = 48
+AVG_ROW_LENGTH = 5461
 CHARACTER SET utf8
 COLLATE utf8_general_ci
 COMMENT = 'Состояние пользователя';
@@ -80,9 +80,9 @@ CREATE TABLE rubrics (
   name TEXT CHARACTER SET ujis COLLATE ujis_japanese_ci NOT NULL COMMENT 'Название',
   PRIMARY KEY (id)
 )
-ENGINE = MYISAM
-AUTO_INCREMENT = 31
-AVG_ROW_LENGTH = 30
+ENGINE = INNODB
+AUTO_INCREMENT = 53
+AVG_ROW_LENGTH = 546
 CHARACTER SET utf8
 COLLATE utf8_general_ci
 COMMENT = 'Рубрики';
@@ -99,9 +99,9 @@ CREATE TABLE topic (
   `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата создания темы',
   PRIMARY KEY (id)
 )
-ENGINE = MYISAM
+ENGINE = INNODB
 AUTO_INCREMENT = 11
-AVG_ROW_LENGTH = 64
+AVG_ROW_LENGTH = 1638
 CHARACTER SET utf8
 COLLATE utf8_general_ci
 COMMENT = 'Темы';
@@ -120,9 +120,9 @@ CREATE TABLE users (
   `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата регистрации',
   PRIMARY KEY (id)
 )
-ENGINE = MYISAM
+ENGINE = INNODB
 AUTO_INCREMENT = 21
-AVG_ROW_LENGTH = 104
+AVG_ROW_LENGTH = 819
 CHARACTER SET utf8
 COLLATE utf8_general_ci
 COMMENT = 'Пользователи';
@@ -212,14 +212,29 @@ DROP PROCEDURE IF EXISTS test$$
 CREATE PROCEDURE test(IN _param INT)
   SQL SECURITY INVOKER
 BEGIN
-    SELECT
-        *
-    FROM
-        comments;
-    SELECT
-        *
-    FROM
-        rubrics;
+	SELECT
+		*
+		FROM comments;
+	SELECT
+		*
+		FROM rubrics;
+END
+$$
+
+--
+-- Описание для процедуры test_error
+--
+DROP PROCEDURE IF EXISTS test_error$$
+CREATE PROCEDURE test_error()
+  SQL SECURITY INVOKER
+BEGIN
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	SELECT
+		"Ошибка" AS message;
+
+	INSERT INTO rubrics VALUES (NULL, "Наука");
+	SELECT
+		"ok";
 END
 $$
 
