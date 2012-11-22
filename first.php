@@ -6,7 +6,6 @@
 		{
 		}
 	}
-	hi;
 	/* @var $mymy My */
 	$mymy = new My();
 ?>
